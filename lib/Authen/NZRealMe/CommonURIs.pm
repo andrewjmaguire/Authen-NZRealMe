@@ -279,11 +279,11 @@ Identifier type used for SAML 2.0 binding type references.  Source [SAML2].
 
 =item saml_binding_artifact => urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Artifact
 
-Indentifier type used for SAML 2.0 HTTP-Artifact binding.  Source [SAML2].
+Identifier type used for SAML 2.0 HTTP-Artifact binding.  Source [SAML2].
 
 =item saml_binding_post => urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST
 
-Indentifier type used for SAML 2.0 HTTP-POST binding.  Source [SAML2].
+Identifier type used for SAML 2.0 HTTP-POST binding.  Source [SAML2].
 
 =item saml_success => urn:oasis:names:tc:SAML:2.0:status:Success
 

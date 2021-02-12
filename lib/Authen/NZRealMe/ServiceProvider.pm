@@ -250,7 +250,7 @@ sub _read_metadata_from_file {
         $params{$_->[0]} = $xc->findvalue($_->[1]);
     }
 
-    if (! defined $params{nameid_format}) {
+    if (! $params{nameid_format}) {
         # Old metadata files do not contain NameIDFormat, set the default:
         $params{nameid_format} = {
             login     => URI('saml_nameid_format_persistent'),
