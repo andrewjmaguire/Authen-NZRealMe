@@ -390,12 +390,23 @@ sub _xpath_context_dom {
 
 sub select_acs_by_index {
     my $self  = shift;
-    my $index = shift // '0';
+    my $index = shift // 'default';
 
-    my @match = grep { $_->{index} eq $index } $self->acs_list
-        or die qq{Unable to find <AssertionConsumerService> with index="$index"};
+    my @match;
+    foreach my $acs ( $self->acs_list ) {
+        if ($index eq 'default') {
+            push @match, $acs if $acs->{is_default};
+        }
+        elsif ($acs->{index} eq $index) {
+            push @match, $acs;
+        }
+    }
+    my $str = $index eq 'default' ? qq{isDefault="true"} : qq{index="$index"};
+    die qq{Unable to find <AssertionConsumerService> with $str}
+        unless @match;
+
     my $count = @match;
-    die qq{$count <AssertionConsumerService> elements have index="$index"}
+    die qq{$count <AssertionConsumerService> elements have $str}
         unless $count == 1;
     return $match[0];
 }
@@ -406,7 +417,8 @@ sub new_request {
 
     my %opt = @_;
     my $acs = $self->select_acs_by_index($opt{acs_index});
-    my $req = Authen::NZRealMe->class_for('authen_request')->new($self, @_);
+    $opt{acs_index} = $acs->{index};
+    my $req = Authen::NZRealMe->class_for('authen_request')->new($self, %opt);
     return $req;
 }
 
@@ -1672,6 +1684,9 @@ C<< <Assertion> >> elements are present in the supplied XML.
 =head2 select_acs_by_index ( $index )
 
 Used by C<new_request> to validate the requested acs_index value.
+The value C<default> may also be used to specify the ACS marked as the default.
+
+Returns the selected ACS.
 
 =head2 now_as_iso
 
