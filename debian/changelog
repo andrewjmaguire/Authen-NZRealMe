@@ -24,6 +24,7 @@ libauthen-nzrealme-perl (1.21-1) stable; urgency=medium
         is true. In the new platform, iCMS is not used.
       - iCMS functionality is deprecated, it will be removed in the next release.
         It will be decommissioned by RealMe after 18th March 2021.
+      - Parameter acs_index set to 'default' will use the ACS with isDefault="true"
 
  -- Andrew Maguire <andrew.maguire@catalyst.net.nz>  Fri, 12 Feb 2021 15:33:21 +1300
 
