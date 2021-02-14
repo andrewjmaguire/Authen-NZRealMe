@@ -32,7 +32,7 @@ is($sp->contact_company, 'Department of Examples Login Services',
     "SP contact company name loaded from metadata looks good");
 
 my @acs_list = $sp->acs_list;
-is(scalar(@acs_list), 2, 'one Assertion Consumer service is defined');
+is(scalar(@acs_list), 2, 'two Assertion Consumer service are defined');
 my($acs0, $acs1) = @acs_list;
 ok($acs0, 'ACS 0');
 is($acs0->{location}, 'https://www.example.govt.nz/app/sample/login-acs',
@@ -77,7 +77,7 @@ is($sp->contact_company, 'Department of Examples Identity Services',
     "SP contact company name loaded from metadata looks good");
 
 @acs_list = $sp->acs_list;
-is(scalar(@acs_list), 2, 'one Assertion Consumer service is defined');
+is(scalar(@acs_list), 2, 'two Assertion Consumer service are defined');
 ($acs0, $acs1) = @acs_list;
 ok($acs0, 'ACS 0');
 is($acs0->{location}, 'https://www.example.govt.nz/app/sample/identity-acs',
